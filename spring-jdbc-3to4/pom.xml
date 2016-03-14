@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>cn.aposoft.springframework</groupId>
 		<artifactId>aposoft-springframework-parent</artifactId>
-		<version>4.0.0</version>
+		<version>4.0.0.1</version>
 	</parent>
 	<artifactId>spring-jdbc-3to4</artifactId>
 	<name>spring-jdbc-3to4</name>
@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.group>org.springframework</spring.group>
 		<!-- <spring.version>3.2.16.RELEASE</spring.version> -->
-		<spring.version>4.2.4.RELEASE</spring.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
