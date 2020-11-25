@@ -1,4 +1,4 @@
-package cn.aposoft.springframework;
+package cn.aposoft.springframework.beans;
 
 import io.github.dunwu.spring.core.resources.*;
 import org.springframework.beans.factory.BeanFactory;
@@ -16,7 +16,7 @@ import java.util.Properties;
  *
  */
 
-public class App {
+public class BeanFactoryApp {
     static Resource resource // = new FileSystemResource("D:\\src\\github\\pipi668\\aposoft-springframework\\spring-beans-xml-first\\src\\main\\resources\\spring-beans.xml");
             = new ClassPathResource("spring-beans.xml");
     public static void main(String[] args) {
