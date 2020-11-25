@@ -2,6 +2,7 @@ package cn.aposoft.springframework;
 
 import io.github.dunwu.spring.core.resources.*;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -9,17 +10,25 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
+import java.util.Properties;
+
 /**
  *
  */
+
 public class App {
+    static Resource resource // = new FileSystemResource("D:\\src\\github\\pipi668\\aposoft-springframework\\spring-beans-xml-first\\src\\main\\resources\\spring-beans.xml");
+            = new ClassPathResource("spring-beans.xml");
     public static void main(String[] args) {
         defaultListBeanFactory();
     }
 
-    static Resource resource // = new FileSystemResource("D:\\src\\github\\pipi668\\aposoft-springframework\\spring-beans-xml-first\\src\\main\\resources\\spring-beans.xml");
-            = new ClassPathResource("spring-beans.xml");
-
+    private static void testFactory(DefaultListableBeanFactory factory) {
+        testPropertyBean(factory);
+        testProtoTypeBean(factory);
+        testFactoryBean(factory);
+        testNestedBeanFactory(factory);
+    }
     private static void testFactoryBean(DefaultListableBeanFactory factory) {
         CakeFactory cakeFactory = factory.getBean("&cake", CakeFactory.class);
         System.out.println("getBean ：CakeFactory :" + (cakeFactory != null));
@@ -27,18 +36,25 @@ public class App {
         System.out.println(cake);
     }
 
+
+    private static void testPropertyBean(DefaultListableBeanFactory factory){
+        Properties propertiesSetting = factory.getBean("propertiesSetting",Properties.class);
+        System.out.println(propertiesSetting);
+        @SuppressWarnings("deprecation")
+        PropertyPlaceholderConfigurer holder = factory.getBean("propertiesPlaceHolder",PropertyPlaceholderConfigurer.class);
+        System.out.println(holder);
+
+    }
+
     private static void testProtoTypeBean(DefaultListableBeanFactory factory){
+        //  simple bean
+//      City city = (City) factory.getBean("city");
+
         Cake cake = factory.getBean("cakeProtoType", Cake.class);
         System.out.println(cake + " is prototype bean");
     }
 
-
-    private static void testFactory(DefaultListableBeanFactory factory) {
-        testProtoTypeBean(factory);
-
-//  simple bean
-//      City city = (City) factory.getBean("city");
-
+    private static void testNestedBeanFactory(DefaultListableBeanFactory factory) {
         factory.getBean("person_lisi");
         Business business = (Business) factory.getBean("business_biden_name2");
         Object o = factory.getBean("person_zhangsan");
@@ -54,7 +70,6 @@ public class App {
 	            at io.github.dunwu.spring.core.resources.Business.toString(Business.java:25)
 	            at java.lang.String.valueOf(String.java:2994)
          */
-
         System.out.println(business);
         System.out.println(business.getClass().getName());
         factory.destroyBean(factory.getBean("business_biden"));
@@ -77,9 +92,7 @@ public class App {
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinitions(resource);
-
         System.out.println("\n完成BeanDefinition的加载.\n");
-
         testFactory(factory);
     }
 
@@ -87,7 +100,5 @@ public class App {
         System.out.println("Hello World!");
         XmlBeanFactory factory = new XmlBeanFactory(resource);
         testFactory(factory);
-
-
     }
 }
