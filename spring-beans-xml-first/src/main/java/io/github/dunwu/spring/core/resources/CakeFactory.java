@@ -19,24 +19,7 @@ public class CakeFactory implements FactoryBean<Cake> {
         this.name = name;
     }
 
-    /**
-     * Return an instance (possibly shared or independent) of the object
-     * managed by this factory.
-     * <p>As with a {@link BeanFactory}, this allows support for both the
-     * Singleton and Prototype design pattern.
-     * <p>If this FactoryBean is not fully initialized yet at the time of
-     * the call (for example because it is involved in a circular reference),
-     * throw a corresponding {@link FactoryBeanNotInitializedException}.
-     * <p>As of Spring 2.0, FactoryBeans are allowed to return {@code null}
-     * objects. The factory will consider this as normal value to be used; it
-     * will not throw a FactoryBeanNotInitializedException in this case anymore.
-     * FactoryBean implementations are encouraged to throw
-     * FactoryBeanNotInitializedException themselves now, as appropriate.
-     *
-     * @return an instance of the bean (can be {@code null})
-     * @throws Exception in case of creation errors
-     * @see FactoryBeanNotInitializedException
-     */
+
     @Override
     public Cake getObject() throws Exception {
         Cake cake = new Cake();

@@ -2,6 +2,7 @@ package io.github.dunwu.spring.core.resources;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Business implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {
 
@@ -29,7 +30,21 @@ public class Business implements BeanFactoryAware, BeanNameAware, InitializingBe
         this.legalRepresentative = legalRepresentative;
     }
 
-    private Person legalRepresentative;
+
+    private City city;
+
+    private Person ;legalRepresentative
+
+    public City getCity() {
+        return city;
+    }
+
+    @Autowired
+    public void setCity(City city) {
+        System.out.println("Business【注入属性】注入属性city :" + city);
+        this.city = city;
+    }
+
 
     @Override
     public String toString() {
