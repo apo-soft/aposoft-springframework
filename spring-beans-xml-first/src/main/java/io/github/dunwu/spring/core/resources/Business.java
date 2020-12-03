@@ -33,7 +33,7 @@ public class Business implements BeanFactoryAware, BeanNameAware, InitializingBe
 
     private City city;
 
-    private Person ;legalRepresentative
+    private Person legalRepresentative;
 
     public City getCity() {
         return city;
