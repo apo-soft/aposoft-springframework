@@ -28,10 +28,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- 每个项目需要自己去定义 -->
-        <nexus.root>http://www.aposoft.cn/nexus/content/repositories</nexus.root>
-        <nexus.releases.root>${nexus.root}/releases/</nexus.releases.root>
-        <nexus.snapshots.root>${nexus.root}/snapshots/</nexus.snapshots.root>
+        <!-- 每个项目需要自己去定义 http://localhost:8081/repository/maven-releases/ -->
+        <nexus.root>http://localhost:8081/repository</nexus.root>
+        <nexus.releases.root>${nexus.root}/maven-releases/</nexus.releases.root>
+        <nexus.snapshots.root>${nexus.root}/maven-snapshots/</nexus.snapshots.root>
         <org.mockito.version>1.9.5</org.mockito.version>
         <spring.version>5.2.11.RELEASE</spring.version>
     </properties>
@@ -39,6 +39,12 @@
         <module>spring-jdbc-3to4</module>
         <module>spring-web-3to4</module>
         <module>spring-beans-xml-first</module>
+        <module>study-client-starter</module>
+        <module>custom-starter-runner</module>
+        <module>spring-boot-web-tomcat-starter-demo</module>
+        <module>mybatis-plus-demo</module>
+        <module>simple-enbeded-tomcat</module>
+        <module>simple-netty-beginning</module>
     </modules>
     <dependencyManagement>
         <dependencies>
