@@ -1,17 +1,19 @@
 package cn.aposoft.springframework.beanfactorytest;
 
+import cn.aposoft.springframework.scan.Car;
 import io.github.dunwu.spring.core.resources.Business;
 import io.github.dunwu.spring.core.resources.Cake;
 import io.github.dunwu.spring.core.resources.CakeFactory;
 import io.github.dunwu.spring.core.resources.Person;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+//import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.util.Properties;
 
 public class BeanFactoryTester {
-
 
 
     public static void testFactory(BeanFactory factory) {
@@ -19,7 +21,22 @@ public class BeanFactoryTester {
         testProtoTypeBean(factory);
         testFactoryBean(factory);
         testNestedBeanFactory(factory);
+        testGetComponentBean(factory);
     }
+
+    private static void testGetComponentBean(BeanFactory factory) {
+        try {
+            Car car = factory.getBean(Car.class);
+            System.out.println("car:" + car);
+            car.setBrand("Benz");
+            car.setModel("GLS 700");
+            System.out.println(car);
+        } catch (BeansException ex) {
+            System.out.println("car is not found.");
+            return;
+        }
+    }
+
     public static void testFactoryBean(BeanFactory factory) {
         CakeFactory cakeFactory = factory.getBean("&cake", CakeFactory.class);
         System.out.println("getBean ：CakeFactory :" + (cakeFactory != null));
@@ -28,16 +45,16 @@ public class BeanFactoryTester {
     }
 
 
-    public static void testPropertyBean(BeanFactory factory){
-        Properties propertiesSetting = factory.getBean("propertiesSetting",Properties.class);
+    public static void testPropertyBean(BeanFactory factory) {
+        Properties propertiesSetting = factory.getBean("propertiesSetting", Properties.class);
         System.out.println(propertiesSetting);
         @SuppressWarnings("deprecation")
-        PropertyPlaceholderConfigurer holder = factory.getBean("propertiesPlaceHolder",PropertyPlaceholderConfigurer.class);
+        PropertySourcesPlaceholderConfigurer holder = factory.getBean("propertiesPlaceHolder", PropertySourcesPlaceholderConfigurer.class);
         System.out.println(holder);
 
     }
 
-    public static void testProtoTypeBean(BeanFactory factory){
+    public static void testProtoTypeBean(BeanFactory factory) {
         //  simple bean
 //      City city = (City) factory.getBean("city");
 
@@ -45,7 +62,7 @@ public class BeanFactoryTester {
         System.out.println(cake + " is prototype bean");
     }
 
-    public static void testDestroy(DefaultListableBeanFactory factory){
+    public static void testDestroy(DefaultListableBeanFactory factory) {
         Object o = factory.getBean("person_zhangsan");
         factory.destroyBean(factory.getBean("business_biden"));
         factory.destroyBean(factory.getBean("person_zhangsan"));
