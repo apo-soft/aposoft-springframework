@@ -1,0 +1,19 @@
+mybatis-plus:
+  global-config:
+    banner: false
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  main:
+    banner-mode: OFF
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # serverTimeZone 不可识别主要是因为在windows服务器上，使用了中文时区 北京**乌鲁木齐
+    url: jdbc:mysql://localhost:3306/mybatisplus?serverTimezone=Asia/Shanghai
+    # url: jdbc:mysql://localhost:3306/mybatisplus?serverTimezone=Asia/Shanghai
+    # 不可识别的内容 UTC+08:00
+    username: root
+    password: liujian
+
