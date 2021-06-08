@@ -27,6 +27,8 @@
     </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- 每个项目需要自己去定义 -->
         <nexus.root>http://www.aposoft.cn/nexus/content/repositories</nexus.root>
@@ -39,9 +41,22 @@
         <module>spring-jdbc-3to4</module>
         <module>spring-web-3to4</module>
         <module>spring-beans-xml-first</module>
+        <module>study-client-starter</module>
+        <module>custom-starter-runner</module>
+        <module>untitled</module>
+        <module>spring-boot-web-tomcat-starter-demo</module>
     </modules>
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.4.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>

@@ -27,12 +27,11 @@ import org.springframework.jdbc.core.RowMapper;
  * for some old project which depends on this interface , we add it to the whole
  * project as a service pack.
  * 
- * 
+ * org.springframework.jdbc.core.simple.SimpleJdbcOperations
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @author Jann Liu
  * @since 2.0
- * @see org.springframework.jdbc.core.simple.SimpleJdbcOperations
  */
 public interface ParameterizedRowMapper<T> extends RowMapper<T> {
 
