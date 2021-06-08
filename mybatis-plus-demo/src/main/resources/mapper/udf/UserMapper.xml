@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.aposoft.udf.mapper.UserMapper">
+
+    <resultMap id="userMap" type="cn.aposoft.udf.entity.User">
+        <id column="id" property="id"/>
+        <result column="age" property="age"/>
+        <result column="email" property="email"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex" />
+    </resultMap>
+
+    <select id="selectBySexPage" resultType="cn.aposoft.udf.entity.User"  >
+        select * from user where sex = #{sex};
+    </select>
+    <select id="selectByAgePage" resultMap="userMap">
+        select * from user where age >= #{age};
+    </select>
+</mapper>

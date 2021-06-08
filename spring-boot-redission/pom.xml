@@ -2,33 +2,97 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>aposoft-springframework-parent</artifactId>
-        <groupId>cn.aposoft.springframework</groupId>
-        <version>4.0.0.1-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>cn.aposoft.springframework</groupId>
+    <artifactId>spring-boot-redission</artifactId>
+    <version>4.0.0.1-SNAPSHOT</version>
 
-    <artifactId>spring-beans-xml-first</artifactId>
-
-    <name>spring-beans-xml-first</name>
+    <name>spring-boot-redission</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
-
+    <!-- 发布版：远程发布仓库地址配置 -->
+    <distributionManagement>
+        <site>
+            <id>Aposoft</id>
+            <url>scp://www.aposoft.cn/</url>
+        </site>
+        <repository>
+            <id>releases</id>
+            <name>Project Release Repository</name>
+            <url>${nexus.releases.root}</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Project Snapshot Repository</name>
+            <url>${nexus.snapshots.root}</url>
+        </snapshotRepository>
+    </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- 每个项目需要自己去定义 -->
+        <nexus.root>http://localhost:8081/repository</nexus.root>
+        <nexus.releases.root>${nexus.root}/maven-releases/</nexus.releases.root>
+        <nexus.snapshots.root>${nexus.root}/maven-snapshots/</nexus.snapshots.root>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>5.3.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>5.1.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- redis依赖commons-pool 这个依赖一定要添加 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.14.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

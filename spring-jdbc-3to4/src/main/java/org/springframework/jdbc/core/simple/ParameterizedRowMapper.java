@@ -32,6 +32,7 @@ import org.springframework.jdbc.core.RowMapper;
  * @author Juergen Hoeller
  * @author Jann Liu
  * @since 2.0
+ * @see org.springframework.jdbc.core.simple.SimpleJdbcOperations
  */
 public interface ParameterizedRowMapper<T> extends RowMapper<T> {
 
