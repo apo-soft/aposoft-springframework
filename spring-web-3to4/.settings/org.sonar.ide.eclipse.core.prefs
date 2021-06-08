@@ -1,5 +1,0 @@
-eclipse.preferences.version=1
-extraProperties=sonar.jdbc.username\=sonar\r\nsonar.host.url\=http\://localhost\:9000\r\nsonar.jdbc.password\=sonar\r\nsonar.jdbc.url\=jdbc\:oracle\:thin\:@localhost\:1521/orcl
-projectKey=cn.aposoft.springframework\:spring-web-3to4
-serverUrl=http\://localhost\:9000
-version=2
